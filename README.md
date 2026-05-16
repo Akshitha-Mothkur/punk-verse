@@ -1,16 +1,83 @@
-# React + Vite
+# Punk Verse 🍺
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Punk Verse is a modern React-based beer explorer app built using the Punk API 🍻
 
-Currently, two official plugins are available:
+The application allows users to browse and search beers while viewing detailed beer information including:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 🍺 Beer name
+- ✨ Tagline
+- 📖 Description
+- 📊 ABV (Alcohol By Volume)
+- 🌿 IBU (Bitterness)
+- 🧪 Ingredients
+- 🍽️ Food pairings
+- ⚙️ Brewing information
 
-## React Compiler
+This project also helped me learn and practice:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🔗 API integration
+- ⚛️ React fundamentals
+- 📡 Fetching data using Axios
+- 🔍 Search functionality
+- 🎨 Responsive UI design
+- 🧩 Component-based architecture
 
-## Expanding the ESLint configuration
+The project focuses on creating a clean, responsive, and visually engaging UI using React ⚛️ and modern CSS 🎨
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Built With
+
+- React
+- React Router
+- Axios
+- CSS
+- React Icons
+
+---
+
+## 📦 API Used
+
+This project uses the Punk API:
+
+https://github.com/alxiw/punkapi.git
+
+API Base URL:
+
+https://punkapi-alxiw.amvera.io/v3/
+
+---
+
+## 📸 Preview
+
+<img width="100%" src="preview.png" alt="Punk Verse Preview"/>
+
+---
+
+## ⚙️ Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/punk-verse.git
+```
+
+Move into the project folder:
+
+```bash
+cd punk-verse
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+## 👩‍💻 Author
+
+Akshitha
