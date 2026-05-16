@@ -1,19 +1,34 @@
 import React ,{useState,useEffect} from "react";
 import axios from 'axios'
 import { MdSearch } from "react-icons/md";
+import { FaAngleLeft ,FaAngleRight} from "react-icons/fa";
 import './Home.css'
 
 function Home(){
     const [data,setData]= useState([])
     const [searchbeer, setSearchBeer]=useState("")
+    const [count, setCount]=useState(1)
+    function PageCounter(){
+        function increment(){
+            setCount(count+1)
+        }
+        function decrement(){
+            (count-1===0)?setCount(count):setCount(count-1)
+        }
 
+        return(
+            <div className="counter">
+                <button onClick={decrement} className="switchpage"><FaAngleLeft/></button>
+                <button className="num">{count}</button>
+                <button onClick={increment} className="switchpage"><FaAngleRight/></button>
+            </div>
+        )
+    }
     useEffect(()=>{
-        axios.get("https://punkapi-alxiw.amvera.io/v3/beers?page=1&per_page=16")
+        axios.get("https://punkapi-alxiw.amvera.io/v3/beers?page="+count+"&per_page=16")
         .then(res=>res.data)
         .then(d=>setData(d))
-    
-        
-    } ,[searchbeer])
+    } ,[searchbeer,count])
 
     function implementSearch(e){
         e.preventDefault()
@@ -23,6 +38,7 @@ function Home(){
     }
     console.log(data)
     console.log(searchbeer)
+    console.log(count)
     return(
         <div className="beer_page">
             
@@ -53,7 +69,8 @@ function Home(){
             </div>
 
            
-           
+        <PageCounter/>
+        
         </div>
     )
 }
