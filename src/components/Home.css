@@ -1,0 +1,98 @@
+.beer_page .searchbar{
+    margin: 12px 0;
+    display: flex;
+    gap:10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchbar input{
+    padding: 8px;
+    width:300px;
+    background:transparent;
+    border:none;
+    border-radius: 5px;
+    background-color: #303030;
+
+}
+
+.searchbar svg{
+font-size: 1.4rem;
+    color: #FF4500;
+    cursor: pointer;
+    margin-top: 5px;
+
+}
+.searchbar button{
+    all:unset;
+}
+.beer_page .beers{
+    display: grid;
+    grid-template-columns: repeat(4, 300px);
+    grid-gap: 25px 28px;
+    justify-content: center;
+    padding: 10px;
+}
+
+.beer_page .beers .beercard{
+    
+    padding: 20px;
+    transition: transform 0.35s ease
+    border-color 0.45s ease ;
+    border-radius: 19px;
+    background-color: #2d2c2cb2;
+    color: white;
+    
+
+    &:hover{
+        border: 1px solid #FF4500;
+        transform: scale(1.03);
+    }
+}
+
+.beercard h3{
+    color: #FF4500;
+    
+    font-weight: 700;
+    letter-spacing: 0.5px;
+   
+}
+
+.beercard h6{
+    color: #d6d6d6;
+    font-size:medium;
+    line-height: 1.6;
+    font-weight: 500;
+    margin-bottom: 22px;
+}
+
+.stats{
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.stats span{
+    
+    background-color: rgba(255,255,255,0.05);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 400;
+}
+
+.beercard button{
+    height: 30px;
+    width: 90px;
+    padding:5px;
+    text-align: center;
+    background-color: #d0633b;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.4s ease;
+
+    &:hover{
+        transform: scale(1.1);
+        background-color: #FF4500;
+    }
+}
