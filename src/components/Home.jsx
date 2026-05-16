@@ -3,11 +3,16 @@ import axios from 'axios'
 import { MdSearch } from "react-icons/md";
 import { FaAngleLeft ,FaAngleRight} from "react-icons/fa";
 import './Home.css'
+import ViewBeerDetails from "./ViewBeerDetails";
+
+import { Link } from "react-router-dom";
 
 function Home(){
     const [data,setData]= useState([])
     const [searchbeer, setSearchBeer]=useState("")
     const [count, setCount]=useState(1)
+    
+    
     function PageCounter(){
         function increment(){
             setCount(count+1)
@@ -51,28 +56,62 @@ function Home(){
             <div className="beers">
                 {
                     data.map((obj)=>{
+                      
                         return(
                             <div className="beercard">
                                 <img src={`https://punkapi-alxiw.amvera.io/v3/images/${obj.image}` } alt={`${obj.name}`} height="180px"/>
                                 <h3>{obj.name}</h3>
                                 <h6>{obj.tagline}</h6>
                                 <div className="stats">
-                                <span>🍺 ABV {obj.abv}%</span>
-                                <span>🌿 IBU {obj.ibu}</span>
-                                </div>
-                                <button>View details</button>
 
+                                <span className={getAbvLevel(obj.abv)}>
+                                    {getAbvLevel(obj.abv)}
+                                </span>
+
+                                <span className={getIbuLevel(obj.ibu)}>
+                                    {getIbuLevel(obj.ibu)}
+                                </span>
+
+                                </div>
+                                <Link to={`/viewdetails/${obj.id}`}>view details</Link>
+                                
                             </div>
                         )
                     })
                 }
             </div>
 
-           
+        
         <PageCounter/>
         
         </div>
     )
 }
 
+function getAbvLevel(abv){
+    if(abv<=5){
+        return "light"
+    }
+    else if(abv<=9){
+        return "strong"
+    }
+    else{
+        return "xstrong"
+    }
+}
+
+function getIbuLevel(ibu){
+    if(ibu<=20){
+        return "mild"
+    }
+    else if(ibu<=40){
+        return "balanced"
+    }
+    else if(ibu<=60){
+        return "bitter"
+    }
+    else{
+        return "xbitter"
+    }
+}
 export default Home

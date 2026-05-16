@@ -74,23 +74,23 @@ font-size: 1.4rem;
 }
 
 .stats span{
-    
-    background-color: rgba(255,255,255,0.05);
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-weight: 400;
+    padding:6px 12px;
+    border-radius:19px;
+    font-size:0.85rem;
+    font-weight:600;
 }
-
-.beercard button{
+.beercard a{
     height: 30px;
     width: 90px;
-    padding:5px;
+    padding:8px;
     text-align: center;
     background-color: #d0633b;
     border: none;
     border-radius: 6px;
     transition: all 0.4s ease;
-
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
     &:hover{
         transform: scale(1.1);
         background-color: #FF4500;
@@ -118,4 +118,39 @@ font-size: 1.4rem;
     &:hover{
         background-color: #303030;
     }
+}
+
+.light{
+    background:#ffe082;
+    color:black;
+}
+
+.strong{
+    background:#ff8a80;
+    color:black;
+}
+
+.xstrong{
+    background:#d50000;
+    color:white;
+}
+
+.mild{
+    background:#fff176;
+    color:black;
+}
+
+.balanced{
+    background:#aed581;
+    color:black;
+}
+
+.bitter{
+    background:#ffb74d;
+    color:black;
+}
+
+.xbitter{
+    background:#ef5350;
+    color:white;
 }
