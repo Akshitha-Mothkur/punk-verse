@@ -11,7 +11,7 @@ function Home(){
     const [data,setData]= useState([])
     const [searchbeer, setSearchBeer]=useState("")
     const [count, setCount]=useState(1)
-    
+   
     
     function PageCounter(){
         function increment(){
@@ -23,9 +23,9 @@ function Home(){
 
         return(
             <div className="counter">
-                <button onClick={decrement} className="switchpage"><FaAngleLeft/></button>
+                <button onClick={decrement} className="switchpage" disabled={count<1}><FaAngleLeft/></button>
                 <button className="num">{count}</button>
-                <button onClick={increment} className="switchpage"><FaAngleRight/></button>
+                <button onClick={increment} className="switchpage" disabled={count>25}><FaAngleRight/></button>
             </div>
         )
     }
