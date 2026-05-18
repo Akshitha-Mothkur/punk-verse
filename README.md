@@ -57,7 +57,7 @@ https://punkapi-alxiw.amvera.io/v3/
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/punk-verse.git
+git clone https://github.com/Akshitha-Mothkur/punk-verse.git
 ```
 
 Move into the project folder:
