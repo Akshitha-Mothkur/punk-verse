@@ -5,6 +5,8 @@ import { FaAngleLeft ,FaAngleRight} from "react-icons/fa";
 import './Home.css'
 import ViewBeerDetails from "./ViewBeerDetails";
 
+import { getAbvLevel ,getIbuLevel} from "../utils/beerUtils";
+
 import { Link } from "react-router-dom";
 
 function Home(){
@@ -12,7 +14,7 @@ function Home(){
     const [searchbeer, setSearchBeer]=useState("")
     const [count, setCount]=useState(1)
    
-    
+   
     function PageCounter(){
         function increment(){
             setCount(count+1)
@@ -34,7 +36,14 @@ function Home(){
         .then(res=>res.data)
         .then(d=>setData(d))
     } ,[searchbeer,count])
-
+ if (data.length==0){
+        return(
+            <>
+            <h2>Loading....
+            </h2>
+            </>
+        )
+    }
     function implementSearch(e){
         e.preventDefault()
         axios.get("https://punkapi-alxiw.amvera.io/v3/beers?page=1&beer_name="+searchbeer)
@@ -88,30 +97,6 @@ function Home(){
     )
 }
 
-function getAbvLevel(abv){
-    if(abv<=5){
-        return "light"
-    }
-    else if(abv<=9){
-        return "strong"
-    }
-    else{
-        return "xstrong"
-    }
-}
 
-function getIbuLevel(ibu){
-    if(ibu<=20){
-        return "mild"
-    }
-    else if(ibu<=40){
-        return "balanced"
-    }
-    else if(ibu<=60){
-        return "bitter"
-    }
-    else{
-        return "xbitter"
-    }
-}
 export default Home
+
