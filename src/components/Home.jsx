@@ -1,98 +1,122 @@
-import React ,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios'
-import { MdSearch } from "react-icons/md";
-import { FaAngleLeft ,FaAngleRight} from "react-icons/fa";
+import { MdSearch, MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import './Home.css'
 import ViewBeerDetails from "./ViewBeerDetails";
 
-import { getAbvLevel ,getIbuLevel} from "../utils/beerUtils";
+import { getAbvLevel, getIbuLevel } from "../utils/beerUtils";
 
 import { Link } from "react-router-dom";
 
-function Home(){
-    const [data,setData]= useState([])
-    const [searchbeer, setSearchBeer]=useState("")
-    const [count, setCount]=useState(1)
-   
-   
-    function PageCounter(){
-        function increment(){
-            setCount(count+1)
+function Home() {
+    const [data, setData] = useState([])
+    const [searchbeer, setSearchBeer] = useState("")
+    const [count, setCount] = useState(1)
+    const [fav, setFav] = useState([])
+
+
+    function PageCounter() {
+        function increment() {
+            setCount(count + 1)
         }
-        function decrement(){
-            (count-1===0)?setCount(count):setCount(count-1)
+        function decrement() {
+            (count - 1 === 0) ? setCount(count) : setCount(count - 1)
         }
 
-        return(
+        return (
             <div className="counter">
-                <button onClick={decrement} className="switchpage" disabled={count<1}><FaAngleLeft/></button>
+                <button onClick={decrement} className="switchpage" disabled={count < 1}><FaAngleLeft /></button>
                 <button className="num">{count}</button>
-                <button onClick={increment} className="switchpage" disabled={count>25}><FaAngleRight/></button>
+                <button onClick={increment} className="switchpage" disabled={count > 25}><FaAngleRight /></button>
             </div>
         )
     }
-    useEffect(()=>{
-        axios.get("https://punkapi-alxiw.amvera.io/v3/beers?page="+count+"&per_page=16")
-        .then(res=>res.data)
-        .then(d=>setData(d))
-    } ,[searchbeer,count])
- if (data.length==0){
-        return(
+    useEffect(() => {
+        axios.get("https://punkapi-alxiw.amvera.io/v3/beers?page=" + count + "&per_page=16")
+            .then(res => res.data)
+            .then(d => setData(d))
+    }, [searchbeer, count])
+    if (data.length == 0) {
+        return (
             <>
-            <h2>Loading....
-            </h2>
+                <h2>Loading....
+                </h2>
             </>
         )
     }
-    function implementSearch(e){
+    function implementSearch(e) {
         e.preventDefault()
-        axios.get("https://punkapi-alxiw.amvera.io/v3/beers?page=1&beer_name="+searchbeer)
-        .then(res=>res.data)
-        .then(d=>setData(d))
+        axios.get("https://punkapi-alxiw.amvera.io/v3/beers?page=1&beer_name=" + searchbeer)
+            .then(res => res.data)
+            .then(d => setData(d))
     }
     console.log(data)
     console.log(searchbeer)
     console.log(count)
-    return(
+    return (
         <div className="beer_page">
-            
+
             <div className="searchbar">
-                <input type="search" name="" id="" placeholder="Search beers..."  onChange={(e)=>setSearchBeer(e.target.value)} onKeyDown={(e)=>{
-                    if (e.key==="Enter") implementSearch(e)
-                }}/>
-                <button onClick={implementSearch}><MdSearch/></button>
+                <input type="search" name="" id="" placeholder="Search beers..." onChange={(e) => setSearchBeer(e.target.value)} onKeyDown={(e) => {
+                    if (e.key === "Enter") implementSearch(e)
+                }} />
+                <button onClick={implementSearch}><MdSearch /></button>
             </div>
             <div className="beers">
+
                 {
-                    data.map((obj)=>{
-                      
-                        return(
+                    data.map((obj) => {
+
+                        return (
                             <div className="beercard">
-                                <img src={`https://punkapi-alxiw.amvera.io/v3/images/${obj.image}` } alt={`${obj.name}`} height="180px"/>
+
+                                <img src={`https://punkapi-alxiw.amvera.io/v3/images/${obj.image}`} alt={`${obj.name}`} height="180px" />
+                                <button
+                                    onClick={() => {
+
+                                        if (fav.includes(obj.id)) {
+                                            setFav(fav.filter((id) => id !== obj.id))
+                                        }
+                                        else {
+                                            setFav([...fav, obj.id])
+                                        }
+
+                                    }}
+                                >
+
+                                    {
+                                        fav.includes(obj.id)
+                                            ? <MdFavorite />
+                                            : <MdFavoriteBorder />
+                                    }
+
+                                </button>
+
                                 <h3>{obj.name}</h3>
                                 <h6>{obj.tagline}</h6>
                                 <div className="stats">
 
-                                <span className={getAbvLevel(obj.abv)}>
-                                    {getAbvLevel(obj.abv)}
-                                </span>
+                                    <span className={getAbvLevel(obj.abv)}>
+                                        {getAbvLevel(obj.abv)}
+                                    </span>
 
-                                <span className={getIbuLevel(obj.ibu)}>
-                                    {getIbuLevel(obj.ibu)}
-                                </span>
+                                    <span className={getIbuLevel(obj.ibu)}>
+                                        {getIbuLevel(obj.ibu)}
+                                    </span>
 
                                 </div>
                                 <Link to={`/viewdetails/${obj.id}`}>view details</Link>
-                                
+
                             </div>
                         )
                     })
                 }
             </div>
 
-        
-        <PageCounter/>
-        
+
+            <PageCounter />
+
         </div>
     )
 }

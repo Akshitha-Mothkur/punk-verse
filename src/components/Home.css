@@ -26,6 +26,21 @@ font-size: 1.4rem;
 .searchbar button{
     all:unset;
 }
+.beercard svg{
+    font-size: 1.3rem;
+    color:#FF4500;
+    cursor: pointer;
+    margin-top: 5px;
+
+}
+.beercard button{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+
+    background: transparent;
+    border: none;
+}
 .beer_page .beers{
     display: grid;
     grid-template-columns: repeat(4, 300px);
@@ -35,7 +50,7 @@ font-size: 1.4rem;
 }
 
 .beer_page .beers .beercard{
-    
+    position:relative;
     padding: 20px;
     transition: transform 0.35s ease
     border-color 0.45s ease ;
